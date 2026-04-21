@@ -1,0 +1,162 @@
+# ************************************************************************* #
+#                                                                           #
+#                                                      :::      ::::::::    #
+#  Analyse_sujet.txt                                 :+:      :+:    :+:    #
+#                                                  +:+ +:+         +:+      #
+#  By: agathe <agathe@student.42.fr>             +#+  +:+       +#+         #
+#                                              +#+#+#+#+#+   +#+            #
+#  Created: 2026/04/21 10:31:39 by agathe          #+#    #+#               #
+#  Updated: 2026/04/21 13:13:13 by agathe          ###   ########.fr        #
+#                                                                           #
+# ************************************************************************* #
+
+I. INSTRUCTIONS
+
+    A. Règles générales:
+        - flake8
+        - mypy
+        - no leaks
+        - docstrings PEP 257 : https://peps.python.org/pep-0257/
+
+   
+    B. Makefile
+        Commandes obligatoires:
+            - install
+            - run
+            - debug
+            - clean
+            - lint
+            - lint-strict
+
+    C. Consignes additionnelles
+        - tests unitaires (pytest, unitest)
+        - .gitignore
+        - environnement virtuel
+
+
+II. MANDATORY PART
+
+Implémenter un générateur de labyrinthes éventuellement parfait (un seul chemin entrée/sortie).
+L'enregistrer dans un fichier avec une représentation hexadécimale des murs.
+Fournir une représentation visuelle qui utilise une logique de génération pouvant être réutilisée.
+
+    A. Usage
+        commande pour run la programme :
+        -> python3 a_maze_ing.py config.txt
+        
+        1. a_maze_ing.py = main
+        2 . config.txt = seul argument accepté. Il définit les options de génération.
+                         il ne doit jamais crasher et doit renvoyer un message clair d'erreur.
+        
+            Erreur à gérer:
+                - invalid configuration
+                - file not found
+                - bad syntax
+                - impossible maze parameter
+            
+            Configuration:
+            Chaque ligne devra commencer par un #
+            Elles s'organisent par KEY=VALUE.
+            WIDTH : Largeur du labyrinthe (nombre de cases) -> WIDTH=20
+            HEIGHT : Hauteur du labyrinthe -> HEIGHT=15
+            ENTRY : Coordonnées d'entrée -> ENTRY=0,0
+            EXIT : Coordonnées de sortie -> EXIT=19,14
+            OUTPUT_FILE : Nom du fichier de sortie -> OUTPUT_FILE=maze.txt
+            PERFECT : est-ce un labyrinthe parfait ? -> PERFECT=True
+
+            Il est possible d'ajouter des clés supplémentaires.
+    
+    B. Labyrinthe
+        - Doit être généré aléatoirement mais il doit être possible de le reproduire
+        - Point de repère : nord, est, sud, ouest
+        - Chaque case comporte entre 0 et 4 murs (chaque repères)
+        - Condition d'un labyrinthe valide:
+            . l'entrée et la sortie doivent exister et être distinctes, à l'intérieur des limites du labyrinthe
+            . la structure doit garantir une connectivité totale et l'absence de cellules isolées (à l'exception du motif « 42 »)
+            . comme l'entrée et la sortie sont des cellules spécifiques, il doit y avoir des murs aux limites extérieures
+            . Les données que vous générez doivent être cohérentes : chaque cellule voisine doit avoir le
+                même mur, le cas échéant. Par exemple, il est interdit d’avoir une première cellule avec un mur sur le
+                côté est, et la deuxième cellule derrière ce mur sans mur sur le côté ouest
+            . les couloirs ne doivent pas faire plus de deux cases de large.
+            . « 42 » visible formé par plusieurs cases entièrement fermées
+            . si PERFECT=True, le labyrinthe doit comporter exactement un chemin entre l'entrée et la sortie
+
+    C. fichier output
+        Le labyrinthe doit être écrit dans le fichier de sortie en utilisant un chiffre hexadécimal par case, chaque
+        chiffre indiquant quelles parois sont fermées.
+        1er chiffre = nord
+        2ème chiffre = est
+        3ème chiffre = sud
+        4ème chiffre = ouest
+
+        0 = fermé
+        1 = ouvert
+        ex: 3 en hexadécimal = 0011
+            donc nord et est fermés et sud et ouest fermés
+        
+        Une ligne du labyrinthe = 1 ligne en hexadécimal
+        Après une ligne vide on doit inscrire 3 infos:
+            - Coordonnées d'entrée
+            - Coordonnées de sortie
+            - le chemin valide le plus court avec les initiales des point cardinnaux
+        
+        ex P9
+
+
+III. REPRESENTATION VISUELLE
+
+2 possibilités:
+    - terminal
+    - MLX
+
+La visualisation doit faire apparaître:
+    - le labyrinthe
+    - l'entrée et la sortie
+    - le chemin de résolution
+
+Intéractions obligatoires:
+    - Générer un nouveau labyrinthe et l'afficher
+    - Afficher et masquer le chemin de résolution
+    - Modifier la couleur du labyrinthe
+    - Facultatif: couleur spécifiques pour afficher le <42>
+
+Afficher les commandes d'intéractions sous le labyrinthe (cf ex P11)
+
+
+IV. DETAIL DU CODE
+
+La génération du labyrinthe doit s'effectuer dans une seule et même classe: MazeGenerator
+Une brève documentation doit être fournie, sur comment:
+    - instancier et utiliser le générateur, avec au moins un exemple
+    - transmettre des paramètres personalisés
+    - Accéder à la structure générée et récupérer au moins une solution
+        
+Le code et la documentation du générateur de labyrinthe doit être placé dans un seul fichier
+et doit pouvoir être réutilisable via une installation ultérieur pip.
+
+Ce paquet doit s'appeler mazegen-* et se trouver à la racine du git
+Les extensions .tar.gz et .whl sont toutes deux autorisées.
+Ex nom du fichier complet:
+    -> mazegen-1.0.0-py3-none-any.whl
+
+Vous devez fournir dans votre dépôt Git tous les éléments nécessaires à la compilation du paquet. Cela
+vous sera demandé lors de l'évaluation : dans un virtualenv ou un environnement équivalent, installez les outils nécessaires
+et recompilez votre paquet à partir de vos sources.
+
+
+V. README
+Dans le README.md une documentation doit aussi être présente.
+cf P14
+
+
+VI. Questions
+1. documentation dans MazeGenerator
+2. le paquet mazegen-* avec les extensions
+3. quels paquets on va devoir apporter qui justifie un venv et pip
+
+
+VII. Point à approfondir
+Affichage sur terminal.
+Tests unitaires
+Différence entre les deux algo mandatory et bonus
+Les animations bonus
