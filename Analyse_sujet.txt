@@ -6,7 +6,7 @@
 #  By: agathe <agathe@student.42.fr>             +#+  +:+       +#+         #
 #                                              +#+#+#+#+#+   +#+            #
 #  Created: 2026/04/21 10:31:39 by agathe          #+#    #+#               #
-#  Updated: 2026/04/21 13:13:13 by agathe          ###   ########.fr        #
+#  Updated: 2026/04/21 13:57:17 by agathe          ###   ########.fr        #
 #                                                                           #
 # ************************************************************************* #
 
@@ -84,13 +84,13 @@ Fournir une représentation visuelle qui utilise une logique de génération pou
     C. fichier output
         Le labyrinthe doit être écrit dans le fichier de sortie en utilisant un chiffre hexadécimal par case, chaque
         chiffre indiquant quelles parois sont fermées.
-        1er chiffre = nord
-        2ème chiffre = est
-        3ème chiffre = sud
-        4ème chiffre = ouest
+        1er chiffre = sud
+        2ème chiffre = ouest
+        3ème chiffre = west
+        4ème chiffre = nord
 
-        0 = fermé
-        1 = ouvert
+        0 = ouvert
+        1 = fermé
         ex: 3 en hexadécimal = 0011
             donc nord et est fermés et sud et ouest fermés
         
@@ -150,10 +150,20 @@ cf P14
 
 
 VI. Questions
-1. documentation dans MazeGenerator
-2. le paquet mazegen-* avec les extensions
-3. quels paquets on va devoir apporter qui justifie un venv et pip
 
+    A. Sujet
+        1. documentation dans MazeGenerator
+        2. le paquet mazegen-* avec les extensions
+        3. quels paquets on va devoir apporter qui justifie un venv et pip
+        4. le mot seed -> traduit graine ??
+        5. pendant la correction on va devoir générer un venv ?
+
+    B. Projet
+        - pk avoir defini des méthode dans le main
+        - que veut dire l'erreur IOError
+        - Makefile
+        - partie 2 
+        - est-ce qu'on a défini une taille max ? >30 pbl
 
 VII. Point à approfondir
 Affichage sur terminal.
