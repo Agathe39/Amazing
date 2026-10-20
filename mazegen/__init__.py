@@ -1,0 +1,4 @@
+from mazegen.facade import MazeGenerator
+
+__all__ = ["MazeGenerator"]
+__version__ = "1.0.0"

@@ -1,0 +1,18 @@
+[project]
+name = "mazegen"
+version = "1.0.1"
+description = "A-Maze-Ing project from 42 School"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "flake8>=7.3.0",
+    "mypy>=1.20.2",
+    "pydantic>=2.13.3"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.setuptools.packages.find]
+include = ["mazegen*"]
