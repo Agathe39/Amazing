@@ -1,0 +1,38 @@
+# === Python bytecode & caches ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# === Virtual environments ===
+.venv/
+
+# === Build artifacts ===
+build/
+*.egg-info/
+*.egg
+.eggs/
+pip-wheel-metadata/
+MANIFEST
+
+# === Type checker & linter caches ===
+.mypy_cache/
+
+# === Editors / IDEs ===
+.vscode/
+
+# === OS cruft ===
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# === Project-specific outputs ===
+maze.txt
+output_*.txt
+
+# === Logs & temp ===
+*.log
+*.tmp
